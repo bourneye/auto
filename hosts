@@ -1,0 +1,5 @@
+[deploy-servers]
+localhost
+
+[app-servers]
+app1

@@ -1,0 +1,6 @@
+- hosts: app-servers
+  remote_user: app
+  sudo: true
+
+  roles:
+    - deploy

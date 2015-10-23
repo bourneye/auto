@@ -1,0 +1,11 @@
+- name: clean sources directory.
+  file: path={{ project_root }}/code state=absent
+
+- name: pull sources from the repository.
+  git: repo={{ project_repo }} dest={{ project_root }}/code version={{ branch }}
+
+- name: build war.
+  command: "{{ maven_home }}/bin/mvn clean package -Dmaven.test.skip=true"
+  environment: java_env
+  args:
+    chdir: "{{ project_root }}/code"

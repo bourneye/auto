@@ -1,0 +1,20 @@
+- name: cut off traffic from nginx.
+  file: path={{ tomcat_home }}/webapps/status state=absent  
+
+- name: shutdown tomcat.
+  service: name=tomcat-a state=stopped
+
+- name: remove old war.
+  file: path={{ tomcat_home }}/webapps/{{ item.path }} state=absent  
+  with_items:
+    - { path: '{{ project_name }}'}
+    - { path: '{{ project_name }}.war'}
+
+- name: copy war to remote hosts. 
+  copy: src={{ project_root }}/code/target/{{ project_name }}.war dest={{ tomcat_home }}/webapps/ owner=tomcat group=tomcat mode=0644
+
+- name: startup tomcat.
+  service: name=tomcat-a state=started
+
+- name: dispatch traffic from nginx.
+  file: path={{ tomcat_home }}/webapps/status state=directory  

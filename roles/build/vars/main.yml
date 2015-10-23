@@ -1,0 +1,7 @@
+project_name: demo
+project_root: /Users/Henry/Downloads/ansible/demo
+project_repo: http://code.iotplat.net/huangchuan/demo.git
+branch:       master
+maven_home:   /Users/Henry/Downloads/dev/apache-maven-3.2.5
+java_env:
+  JAVA_HOME: /Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home

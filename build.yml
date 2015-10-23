@@ -1,0 +1,6 @@
+- hosts: deploy-servers
+  remote_user: Henry
+  sudo: false
+
+  roles:
+    - build
