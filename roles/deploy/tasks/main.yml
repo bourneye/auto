@@ -2,7 +2,7 @@
   file: path={{ tomcat_home }}/webapps/status state=absent  
 
 - name: shutdown tomcat.
-  service: name=tomcat-a state=stopped
+  service: name=tomcat-7a state=stopped
 
 - name: remove old war.
   file: path={{ tomcat_home }}/webapps/{{ item.path }} state=absent  
@@ -11,10 +11,10 @@
     - { path: '{{ project_name }}.war'}
 
 - name: copy war to remote hosts. 
-  copy: src={{ project_root }}/code/target/{{ project_name }}.war dest={{ tomcat_home }}/webapps/ owner=tomcat group=tomcat mode=0644
+  copy: src={{ project_root }}/code/target/{{ project_name }}.war dest={{ tomcat_home }}/webapps/ owner=app group=app mode=0644
 
 - name: startup tomcat.
-  service: name=tomcat-a state=started
+  service: name=tomcat-7a state=started
 
 - name: dispatch traffic from nginx.
   file: path={{ tomcat_home }}/webapps/status state=directory  
